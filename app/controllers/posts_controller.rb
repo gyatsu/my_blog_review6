@@ -7,6 +7,12 @@ class PostsController < ApplicationController
     @post.save
     redirect_to "/posts/#{@post.id}"
   end
+  def show
+    @post = Post.find(params[:id])
+  end
+  def index
+    @posts = Post.all
+  end
   private
   def post_params
     params.require(:post).permit(
@@ -14,8 +20,5 @@ class PostsController < ApplicationController
       :body,
       :category
       )
-  end
-  def show
-    @post = Post.find(params[:id])
   end
 end
